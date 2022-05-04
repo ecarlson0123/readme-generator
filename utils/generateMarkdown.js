@@ -33,6 +33,15 @@ function renderLicenseLink(license) {
 
 
 // GENERATE SECTIONS
+const generateToC = (sectionText, sectionTitle) => {
+  if (!sectionText) {
+    return '';
+  }
+  return `
+  -[${sectionTitle}](#${sectionTitle.replace(' ','-')})
+  `;
+}
+
 const generateLicense = license => {
   if (license === 'No License') {
     return '';
@@ -87,12 +96,31 @@ const generateTesting = testingText => {
   `;
 }
 
+const generateQuestions = (email, github) => {
+
+  return `
+  ## **Questions**
+  email: ${email}
+  GitHub: [${github}](https://github.com/${github})
+  `;
+}
+
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-  const { title, description, installation, usage, contribution, testing, licenses, fileName} = data
+  const { title, description, installation, usage, contribution, testing, licenses, email, github} = data
   return readmeText=`
   ${renderLicenseBadge(licenses)}${renderLicenseLink(licenses)}
-  # ${title}
+  # **${title}**
+
+  ## **Table of Contents**
+  ${generateToC(description,'Description')}
+  ${generateToC(installation,'Installation')}
+  ${generateToC(usage,'Usage')}
+  ${generateToC(contribution,'Contribution Guidelines')}
+  ${generateToC(testing,'Testing Guidelines')}
+  ${generateToC(licenses,'License')}
+  ${generateToC(true,'Questions')}
+
   ## **Description**
   ${description}
 
@@ -105,6 +133,8 @@ function generateMarkdown(data) {
   ${generateTesting(testing)}
 
   ${generateLicense(licenses)}
+
+  ${generateQuestions(email, github)}
   `;
 }
 
