@@ -113,13 +113,13 @@ function generateMarkdown(data) {
   # **${title}**
 
   ## **Table of Contents**
-  ${generateToC(description,'Description')}
-  ${generateToC(installation,'Installation')}
-  ${generateToC(usage,'Usage')}
-  ${generateToC(contribution,'Contribution Guidelines')}
-  ${generateToC(testing,'Testing Guidelines')}
-  ${generateToC(licenses,'License')}
-  ${generateToC(true,'Questions')}
+  ${generateToC(description,'description')}
+  ${generateToC(installation,'installation')}
+  ${generateToC(usage,'usage')}
+  ${generateToC(contribution,'contribution guidelines')}
+  ${generateToC(testing,'testing guidelines')}
+  ${generateToC(licenses,'license')}
+  ${generateToC(true,'questions')}
 
   ## **Description**
   ${description}
